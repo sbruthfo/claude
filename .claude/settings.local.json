@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip show *)",
+      "Bash(python3 -c \"import playwright\")",
+      "Bash(chromium --headless --no-sandbox --screenshot=/tmp/preview.png --window-size=1280,900 \"file:///mnt/chromeos/MyFiles/her-equity-collective/index.html\")",
+      "Bash(chromium --headless --no-sandbox --screenshot=/tmp/preview_scroll.png --window-size=1280,3500 \"file:///mnt/chromeos/MyFiles/her-equity-collective/index.html\")",
+      "Read(//tmp/**)",
+      "Bash(chromium *)"
+    ]
+  }
+}
