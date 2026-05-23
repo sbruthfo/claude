@@ -8,5 +8,36 @@
       "Read(//tmp/**)",
       "Bash(chromium *)"
     ]
-  }
+  },
+  "PreToolUse": [
+    {
+      "matcher": "Read",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node /home/hooks/read_hook.js"
+        }
+      ]
+    }
+  ],
+  "PostToolUse": [
+    {
+      "matcher": "Write|Edit|MultiEdit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node /home/hooks/format_hook.js"
+        }
+      ]
+    },
+    {
+      "matcher": "Write|Edit|MultiEdit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const f=(JSON.parse(d).tool_input||{}).file_path||'';if(/\\.(html|css)$/.test(f)){require('child_process').execSync('prettier --write '+JSON.stringify(f),{stdio:'inherit'})}})\" 2>/dev/null || true"
+        }
+      ]
+    }
+  ]
 }
