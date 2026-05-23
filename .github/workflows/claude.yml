@@ -67,5 +67,5 @@ jobs:
               }
             }
 
-          allowed_tools: "Bash(npm:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click"
+          allowed_tools: "Task,Bash(npm:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click"
 
