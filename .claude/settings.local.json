@@ -6,7 +6,10 @@
       "Bash(chromium --headless --no-sandbox --screenshot=/tmp/preview.png --window-size=1280,900 \"file:///mnt/chromeos/MyFiles/her-equity-collective/index.html\")",
       "Bash(chromium --headless --no-sandbox --screenshot=/tmp/preview_scroll.png --window-size=1280,3500 \"file:///mnt/chromeos/MyFiles/her-equity-collective/index.html\")",
       "Read(//tmp/**)",
-      "Bash(chromium *)"
+      "Bash(chromium *)",
+      "Bash(prettier *)",
+      "Bash(node -e \"console.log\\(process.env.PATH\\)\")",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data', c => d += c\\); process.stdin.on\\('end', \\(\\) => { try { const f = \\(JSON.parse\\(d\\).tool_input || {}\\).file_path || ''; if \\(/\\\\.\\(html|css\\)$/.test\\(f\\)\\) { require\\('child_process'\\).execSync\\('/home/sruthford/.config/nvm/versions/node/v24.16.0/bin/prettier --write ' + JSON.stringify\\(f\\), { stdio: 'inherit' }\\); } } catch\\(e\\) { console.error\\('HOOK ERROR:', e.message\\); } }\\);\")"
     ]
   },
   "PreToolUse": [
@@ -26,16 +29,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "node /home/hooks/format_hook.js"
-        }
-      ]
-    },
-    {
-      "matcher": "Write|Edit|MultiEdit",
-      "hooks": [
-        {
-          "type": "command",
-          "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const f=(JSON.parse(d).tool_input||{}).file_path||'';if(/\\.(html|css)$/.test(f)){require('child_process').execSync('prettier --write '+JSON.stringify(f),{stdio:'inherit'})}})\" 2>/dev/null || true"
+          "command": "/home/sruthford/.config/nvm/versions/node/v24.16.0/bin/node -e \"let d=''; process.stdin.on('data', c => d += c); process.stdin.on('end', () => { try { const f = (JSON.parse(d).tool_input || {}).file_path || ''; if (/\\.(html|css)$/.test(f)) { require('child_process').execSync('/home/sruthford/.config/nvm/versions/node/v24.16.0/bin/prettier --write ' + JSON.stringify(f), { stdio: 'inherit' }); } } catch(e) {} });\" 2>/dev/null"
         }
       ]
     }
